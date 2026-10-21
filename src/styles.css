@@ -1,0 +1,174 @@
+:root {
+  --bg: #0a0a0a;
+  --panel: #141414;
+  --panel2: #191919;
+  --accent: #c6f24c;
+  --ink: #ede7da;
+  --muted: #8a857b;
+  --line: #262626;
+  --err: #ff6b6b;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: radial-gradient(1200px 600px at 50% -10%, #15170e 0%, var(--bg) 55%);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: "Sora", sans-serif; }
+code { font-family: "Fira Code", monospace; color: var(--accent); font-size: .9em; }
+
+/* ── Marca ───────────────────────────────────────────────── */
+.marca { display: flex; align-items: center; gap: 12px; }
+.marca-logo {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: var(--accent); color: #0d1203;
+  font-family: "Sora"; font-weight: 800; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.marca h1 { font-size: 20px; font-weight: 800; letter-spacing: -.3px; }
+.marca .sub { font-size: 12px; color: var(--muted); font-family: "Fira Code"; }
+
+/* ── Login ───────────────────────────────────────────────── */
+.tela-centro {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.cartao-login {
+  width: 100%; max-width: 380px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .5);
+}
+.cartao-login .marca { margin-bottom: 22px; }
+
+.abas {
+  display: flex; background: var(--panel2);
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 4px; margin-bottom: 20px;
+}
+.aba {
+  flex: 1; padding: 9px; border: 0; border-radius: 7px;
+  background: transparent; color: var(--muted);
+  font-family: "Sora"; font-weight: 600; font-size: 14px; cursor: pointer;
+  transition: .15s;
+}
+.aba.ativa { background: var(--accent); color: #0d1203; }
+
+label {
+  display: block; font-size: 12px; color: var(--muted);
+  font-family: "Fira Code"; text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 14px;
+}
+input, select {
+  width: 100%; margin-top: 6px;
+  background: var(--panel2); border: 1px solid var(--line);
+  border-radius: 10px; padding: 11px 13px;
+  color: var(--ink); font-size: 15px; font-family: "Inter";
+  transition: border-color .15s;
+}
+input:focus, select:focus { outline: none; border-color: var(--accent); }
+input::placeholder { color: #55514a; }
+
+.btn-principal {
+  width: 100%; margin-top: 4px;
+  background: var(--accent); color: #0d1203;
+  border: 0; border-radius: 10px; padding: 12px;
+  font-family: "Sora"; font-weight: 700; font-size: 15px; cursor: pointer;
+  transition: filter .15s;
+}
+.btn-principal:hover { filter: brightness(1.08); }
+.btn-principal:disabled { opacity: .6; cursor: default; }
+
+.erro {
+  background: rgba(255, 107, 107, .1);
+  border: 1px solid rgba(255, 107, 107, .4);
+  color: #ff9a9a; border-radius: 10px;
+  padding: 10px 13px; font-size: 13.5px; margin-bottom: 14px;
+}
+.dica-rodape { margin-top: 18px; text-align: center; font-size: 12px; color: var(--muted); }
+
+/* ── Página / Painel ─────────────────────────────────────── */
+.pagina { max-width: 680px; margin: 0 auto; padding: 24px 20px 60px; }
+.topo {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 24px;
+}
+.btn-sair {
+  background: transparent; border: 1px solid var(--line);
+  color: var(--muted); border-radius: 9px; padding: 8px 16px;
+  font-family: "Sora"; font-weight: 600; font-size: 13px; cursor: pointer;
+  transition: .15s;
+}
+.btn-sair:hover { border-color: var(--err); color: var(--err); }
+
+.nova-tarefa { display: flex; gap: 10px; margin-bottom: 20px; }
+.nova-tarefa input { margin-top: 0; }
+.nova-tarefa select { margin-top: 0; width: auto; min-width: 140px; }
+.nova-tarefa .btn-principal { width: auto; margin-top: 0; padding: 11px 22px; white-space: nowrap; }
+
+.barra-filtros {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+}
+.chips { display: flex; gap: 8px; }
+.chip {
+  background: var(--panel2); border: 1px solid var(--line);
+  color: var(--muted); border-radius: 999px; padding: 6px 14px;
+  font-family: "Sora"; font-weight: 600; font-size: 13px; cursor: pointer; transition: .15s;
+}
+.chip.ativo { background: var(--accent); color: #0d1203; border-color: var(--accent); }
+.contador { font-size: 13px; color: var(--muted); font-family: "Fira Code"; }
+
+.vazio { color: var(--muted); text-align: center; padding: 40px 0; font-size: 15px; }
+
+.lista { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.item {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 12px; padding: 13px 15px;
+  transition: border-color .15s;
+}
+.item:hover { border-color: #333; }
+.item.feito { opacity: .6; }
+.item.feito .nome { text-decoration: line-through; color: var(--muted); }
+
+.caixa {
+  width: 24px; height: 24px; flex-shrink: 0;
+  border: 2px solid var(--line); border-radius: 7px;
+  background: transparent; color: #0d1203;
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: .15s;
+}
+.item.feito .caixa { background: var(--accent); border-color: var(--accent); }
+
+.nome { flex: 1; font-size: 15px; }
+.prioridade {
+  font-family: "Fira Code"; font-size: 11px; font-weight: 600;
+  padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); color: var(--muted);
+}
+.prioridade.p4, .prioridade.p5 { color: #ffb15c; border-color: rgba(255, 177, 92, .4); }
+
+.icone {
+  background: transparent; border: 0; color: var(--muted);
+  font-size: 15px; cursor: pointer; padding: 4px 6px; border-radius: 6px; transition: .15s;
+}
+.icone:hover { color: var(--ink); background: var(--panel2); }
+.icone.perigo:hover { color: var(--err); }
+
+.rodape {
+  margin-top: 36px; text-align: center;
+  font-size: 12px; color: #4a463f; font-family: "Fira Code";
+}
+
+@media (max-width: 520px) {
+  .nova-tarefa { flex-wrap: wrap; }
+  .nova-tarefa input { flex: 1 1 100%; }
+}
