@@ -83,6 +83,23 @@ src/
 
 Feito com Vite + React. Sem biblioteca de componentes, de propósito: é pouco código e dá pra ler tudo.
 
+
+---
+
+## Colocar no ar (Cloudflare Pages)
+
+Depois que a sua API estiver publicada (ex.: na Render), este front vai pro ar assim:
+
+1. Suba este repositório pro seu GitHub.
+2. Em [dash.cloudflare.com](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → escolha o repo.
+3. Build settings: **Framework preset = Vite** (ou, na mão: build command `npm run build`, output `dist`).
+4. Em **Environment variables**, adicione: **`VITE_API_URL`** = a URL pública da sua API (ex.: `https://taskforge-api.onrender.com`).
+5. **Save and Deploy.** Em ~1 minuto seu front está num endereço `*.pages.dev`.
+
+> Importante: no back-end, libere esse endereço `*.pages.dev` no CORS (a variável `APP_CORS_ORIGINS`). Sem isso, o navegador bloqueia.
+
+Localmente, o endereço da API continua vindo do `src/api.js` (que cai em `localhost:8082` quando não há `VITE_API_URL`).
+
 ---
 
 Material do curso **Do Código ao Contrato** — prof. Lander Andrade.

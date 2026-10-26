@@ -3,7 +3,9 @@
 // Se um dia o endereço da API mudar, muda SÓ aqui embaixo.
 // ─────────────────────────────────────────────────────────────────────────
 
-export const API = "http://localhost:8082";
+// Em produção (Cloudflare Pages), o endereço da API vem da variável VITE_API_URL,
+// definida no painel do Cloudflare. Na sua máquina, sem ela, cai no back-end local.
+export const API = import.meta.env.VITE_API_URL || "http://localhost:8082";
 
 // Onde o crachá (o token JWT) fica guardado no navegador.
 const CHAVE_TOKEN = "taskforge_token";
@@ -74,12 +76,21 @@ export function cadastrar(nome, email, senha) {
 }
 
 export async function entrar(email, senha) {
-  const { token } = await pedir("/usuarios/login", {
-    method: "POST",
-    body: JSON.stringify({ email, senha }),
-  });
-  salvarSessao(token, email);
-  return token;
+  let resposta;
+  try {
+    resposta = await pedir("/usuarios/login", {
+      method: "POST",
+      body: JSON.stringify({ email, senha }),
+    });
+  } catch (e) {
+    // No login, um 401 não é "sessão expirada": é email/senha errados.
+    if (e instanceof SessaoExpiradaError) {
+      throw new Error("Email ou senha inválidos.");
+    }
+    throw e;
+  }
+  salvarSessao(resposta.token, email);
+  return resposta.token;
 }
 
 export function listarTarefas(concluida) {
